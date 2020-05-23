@@ -21,24 +21,27 @@ class ResearchList extends React.Component{
 
     onChangeHandler = (id) => {
         this.setState({
-            stepOneValues:[...this.state.stepOneValues, id.target.value]
+            stepOneValues: [...this.state.stepOneValues, id.target.value]
         })
 
     }
 
     render() {
+        const { stepOneValues, activeStep, results } = this.state;
+        const stepTwoData = stepOneValues.map(val => ResearchData.find( ({ id }) => id == val ))
+
         return (
             <div className={classes.ResearchList}>
                 <div className={classes.researchItems}>
-                    {this.state.activeStep === 1 &&
+                    {activeStep === 1 &&
                         <StepOne
-                            name={this.state.results[this.state.activeStep].name}
-                            id={this.state.results[this.state.activeStep].id}
-                            results={this.state.results}
+                            name={results[activeStep].name}
+                            id={results[activeStep].id}
+                            results={results}
                             onCheckboxChange={this.onChangeHandler}
                         />}
-                    {this.state.activeStep === 2 && <StepTwo/>}
-                    {this.state.activeStep === 3 && <StepThree/>}
+                    {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepOneValues={stepOneValues}/>}
+                    {activeStep === 3 && <StepThree/>}
                 </div>
 
                 <button onClick={this.handleSubmit}>Дальше</button>

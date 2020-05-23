@@ -29,7 +29,7 @@ class ResearchList extends React.Component{
     render() {
         const { stepOneValues, activeStep, results } = this.state;
         const stepTwoData = stepOneValues.map(val => ResearchData.find( ({ id }) => id == val ))
-
+        console.log("stepTwoData", stepTwoData)
         return (
             <div className={classes.ResearchList}>
                 <div className={classes.researchItems}>
@@ -40,7 +40,7 @@ class ResearchList extends React.Component{
                             results={results}
                             onCheckboxChange={this.onChangeHandler}
                         />}
-                    {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepOneValues={stepOneValues}/>}
+                    {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepTwoData={stepTwoData}/>}
                     {activeStep === 3 && <StepThree/>}
                 </div>
 

@@ -5,7 +5,7 @@ const StepTwo = props => (
         <h1>Step Two</h1>
         {props.stepTwoData.map((data, index) =>(
                 <div key={index}>
-                    <div>1st step name: {data.nam}</div>
+                    <div>1st step name: {data.name}</div>
                     {
                         data.specifications.map((spec, index) => (
                             <React.Fragment key={index}>

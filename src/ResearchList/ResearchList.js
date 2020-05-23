@@ -10,6 +10,7 @@ class ResearchList extends React.Component{
         activeStep: 1,
         results: ResearchData,
         title: 'Что вы желаете протестировать?',
+        stepOneValues: []
     }
 
     handleSubmit = () => {
@@ -19,20 +20,13 @@ class ResearchList extends React.Component{
     }
 
     onChangeHandler = (id) => {
-        const qwe =this.state.results[this.state.activeStep]
-        const results = this.state.results
-        if (qwe.id === id) {
-            this.setState({
-                isChecked : !this.state.results.isChecked,
-                results: results
-            })
-            console.log('adssa')
-        }
+        this.setState({
+            stepOneValues:[...this.state.stepOneValues, id.target.value]
+        })
 
     }
 
     render() {
-
         return (
             <div className={classes.ResearchList}>
                 <div className={classes.researchItems}>

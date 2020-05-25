@@ -10,7 +10,7 @@ class ResearchList extends React.Component{
         activeStep: 1,
         results: ResearchData,
         title: 'Что вы желаете протестировать?',
-        stepOneValues: [],
+        stepOneValues: {},
         isChecked: false
     }
 
@@ -20,26 +20,22 @@ class ResearchList extends React.Component{
         })
     }
 
-    onChangeHandler = (id) => {
+    onChangeHandler = values => {
         this.setState({
-            stepOneValues: [...this.state.stepOneValues, id.target.value]
-        })
-
-    }
-
-    onChange = (id) => {
-        const v = id.target.checked
-        const name = id.target.name
-        console.log('event', v)
-        this.setState({
-            stepOneValues: [...this.state.stepOneValues, v]
+            stepOneValues: values
         })
     }
+
 
     render() {
         const { stepOneValues, activeStep, results } = this.state;
-        const stepTwoData = stepOneValues.map(val => ResearchData.find( ({ id }) => id == val ))
-        console.log("stepTwoData", stepTwoData)
+        const stepTwoData = ResearchData.map( data => {
+            if(stepOneValues[data.id]){
+                return data;
+            }
+            return null
+        } )
+
         return (
             <div className={classes.ResearchList}>
                 <div className={classes.researchItems}>
@@ -48,14 +44,13 @@ class ResearchList extends React.Component{
                             name={results[activeStep].name}
                             id={results[activeStep].id}
                             results={results}
-                            checkboxChange={this.onChange}
-                            isChecked={results[activeStep].isChecked}
+                            onChangeHandler={this.onChangeHandler}
                         />}
                     {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepTwoData={stepTwoData}/>}
                     {activeStep === 3 && <StepThree/>}
                 </div>
 
-                <button onClick={this.handleSubmit} disabled={!this.state.isChecked}>Дальше</button>
+                <button onClick={this.handleSubmit} >Дальше</button>
             </div>
         )
     }

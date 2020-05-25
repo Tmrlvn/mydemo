@@ -3,7 +3,7 @@ import React from "react";
 const StepTwo = props => (
     <React.Fragment>
         <h1>Step Two</h1>
-        {props.stepTwoData.map((data, index) =>(
+        {props.stepTwoData.map((data, index) =>data && (
                 <div key={index}>
                     <div>1st step name: {data.name}</div>
                     {

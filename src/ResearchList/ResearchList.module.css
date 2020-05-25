@@ -26,6 +26,8 @@
     margin-bottom: 10px;
 }
 .researchItems .researchItem input{
+    width: 25px;
+    height: 25px;
     margin: 0 5px 0 0;
 }
 .researchItems .researchItem label{

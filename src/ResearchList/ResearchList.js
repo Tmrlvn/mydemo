@@ -10,7 +10,8 @@ class ResearchList extends React.Component{
         activeStep: 1,
         results: ResearchData,
         title: 'Что вы желаете протестировать?',
-        stepOneValues: []
+        stepOneValues: [],
+        isChecked: false
     }
 
     handleSubmit = () => {
@@ -26,6 +27,15 @@ class ResearchList extends React.Component{
 
     }
 
+    onChange = (id) => {
+        const v = id.target.checked
+        const name = id.target.name
+        console.log('event', v)
+        this.setState({
+            stepOneValues: [...this.state.stepOneValues, v]
+        })
+    }
+
     render() {
         const { stepOneValues, activeStep, results } = this.state;
         const stepTwoData = stepOneValues.map(val => ResearchData.find( ({ id }) => id == val ))
@@ -38,13 +48,14 @@ class ResearchList extends React.Component{
                             name={results[activeStep].name}
                             id={results[activeStep].id}
                             results={results}
-                            onCheckboxChange={this.onChangeHandler}
+                            checkboxChange={this.onChange}
+                            isChecked={results[activeStep].isChecked}
                         />}
                     {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepTwoData={stepTwoData}/>}
                     {activeStep === 3 && <StepThree/>}
                 </div>
 
-                <button onClick={this.handleSubmit}>Дальше</button>
+                <button onClick={this.handleSubmit} disabled={!this.state.isChecked}>Дальше</button>
             </div>
         )
     }

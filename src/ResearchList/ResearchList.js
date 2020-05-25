@@ -10,8 +10,7 @@ class ResearchList extends React.Component{
         activeStep: 1,
         results: ResearchData,
         title: 'Что вы желаете протестировать?',
-        stepOneValues: {},
-        isChecked: false
+        stepOneValues: {}
     }
 
     handleSubmit = () => {
@@ -20,7 +19,7 @@ class ResearchList extends React.Component{
         })
     }
 
-    onChangeHandler = values => {
+    handleStepOneChange = values => {
         this.setState({
             stepOneValues: values
         })
@@ -44,7 +43,7 @@ class ResearchList extends React.Component{
                             name={results[activeStep].name}
                             id={results[activeStep].id}
                             results={results}
-                            onChangeHandler={this.onChangeHandler}
+                            onChangeHandler={this.handleStepOneChange}
                         />}
                     {activeStep === 2 && stepTwoData.length > 0 && <StepTwo stepTwoData={stepTwoData}/>}
                     {activeStep === 3 && <StepThree/>}

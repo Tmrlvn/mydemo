@@ -13,24 +13,27 @@ class StepOne extends React.Component{
         this.setState({
             values
         });
+        console.log('values', values)
 
         this.props.onChangeHandler(values)
     }
 
     render() {
-        const { results, checkboxChange } = this.props;
-        const { values } = this.state;
+        const { results } = this.props;
 
         return (
             <React.Fragment>
-                {results.map((data, index) => {
-                    return (
-                        <div key={index} className={classes.researchItem}>
-                            <input type="checkbox" id={data.id} onChange={this.handleCheckboxChange} value={data.id} />
-                            <label htmlFor={data.id}>{data.name}</label>
-                        </div>
-                    )
-                })}
+                <h1>Что вы желаете протестировать?</h1>
+                <div className={classes.researchItems}>
+                    {results.map((data, index) => {
+                        return (
+                            <div key={index} className={classes.researchItem}>
+                                <input type="checkbox" id={data.id} onChange={this.handleCheckboxChange} value={data.id} />
+                                <label htmlFor={data.id}>{data.name}</label>
+                            </div>
+                        )
+                    })}
+                </div>
             </React.Fragment>
         )
     }

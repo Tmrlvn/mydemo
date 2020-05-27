@@ -14,7 +14,6 @@ class StepTwo extends React.Component{
         this.setState({
             values
         });
-        console.log('valuessssssssss', values)
 
         this.props.onChangeHandler(values)
     }

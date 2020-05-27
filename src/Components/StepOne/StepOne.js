@@ -13,7 +13,6 @@ class StepOne extends React.Component{
         this.setState({
             values
         });
-        console.log('values', values)
 
         this.props.onChangeHandler(values)
     }

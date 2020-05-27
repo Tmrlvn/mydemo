@@ -33,16 +33,8 @@ class ResearchList extends React.Component{
         this.setState({
             stepOneValues: values
         })
-        console.log('event ', values)
     }
-    /*handleStepOneChange = e => {
-        const { values } = this.state;
-        values[e.target.value] = e.target.checked;
-        this.setState({
-            stepOneValues: values
-        })
-        console.log('event ', values)
-    }*/
+
     handleStepTwoChange = values => {
         this.setState({
             stepTwoValues: values
@@ -51,21 +43,24 @@ class ResearchList extends React.Component{
 
 
     render() {
-        const { stepOneValues, stepTwoValues, activeStep, results, title } = this.state;
+        const { stepOneValues, stepTwoValues, activeStep, results } = this.state;
         const stepTwoData = ResearchData.map( data => {
             if(stepOneValues[data.id]){
                 return data;
             }
             return null
-        } )
-        console.log('stepTwoData ', stepTwoData)
-        /*const stepThreeData = ResearchData.map( data => {
-            if(stepTwoValues[data.id]){
-                return data;
-            }
-            return null
-        } )
-        console.log('stepThreeData ', stepThreeData)*/
+        })
+
+        let stepThreeData = [];
+        stepTwoData && stepTwoData.map( data => {
+            return data ? data.specifications.map(spec => {
+                if(spec && stepTwoValues[spec.id]){
+                    stepThreeData.push(spec);
+                }
+                return null
+            }) : null
+            
+        })
 
         return (
             <div className={classes.ResearchList}>
@@ -81,7 +76,7 @@ class ResearchList extends React.Component{
                         />}
                     {activeStep === 3 && stepTwoData.length > 0 &&
                         <StepThree
-                            stepTwoData={stepTwoData}
+                            stepThreeData={stepThreeData}
                         />}
 
                 {this.state.activeStep > 1 ? <button onClick={this.handleBackSubmit}>Назад</button> : null}

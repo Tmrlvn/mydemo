@@ -11,7 +11,8 @@ class StepThree extends React.Component{
                 <div className={classes.researchItems} style={{'flexDirection': 'column'}}>
                     {stepThreeData.map((data, index) => data && (
                             <React.Fragment key={index}>
-                                <div>1st step name: {data.name}</div>
+                                <div>1st step name: {data.stepOneName}</div>
+                                <div>2nd step name: {data.name}</div>
                                     {data.characteristics.map((spec, index) => spec && (
                                         
                                         <div key={index} className={classes.researchItem}>

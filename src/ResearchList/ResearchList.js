@@ -55,7 +55,7 @@ class ResearchList extends React.Component{
         stepTwoData && stepTwoData.map( data => {
             return data ? data.specifications.map(spec => {
                 if(spec && stepTwoValues[spec.id]){
-                    stepThreeData.push(spec);
+                    stepThreeData.push({...spec, stepOneName: data.name});
                 }
                 return null
             }) : null

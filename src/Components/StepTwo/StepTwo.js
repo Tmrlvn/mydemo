@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../../ResearchList/ResearchList.module.css";
+import "../../ResearchList/ResearchList.css";
 
 class StepTwo extends React.Component{
 
@@ -7,7 +7,7 @@ class StepTwo extends React.Component{
         values: {}
     }
 
-    handleCheckChange = e => {
+    handleCheckboxChange = e => {
         const { values } = this.state;
         values[e.target.value] = e.target.checked;
 
@@ -24,15 +24,15 @@ class StepTwo extends React.Component{
         return (
             <React.Fragment>
                 <h1>Выберите спецификацию</h1>
-                <div className={classes.researchItems} style={{'flexDirection': 'column'}}>
+                <div className='researchItems' style={{'flexDirection': 'column'}}>
                     {stepTwoData.map((data, index) => data && (
                             <React.Fragment key={index}>
-                                <div>{data.name}</div>
-                                <div className={classes['d-flex']}>
+                                <div className='name'>{data.name}</div>
+                                <div className='d-flex'>
                                     {
                                         data.specifications.map((spec, index) => (
-                                            <div key={index} className={classes.researchItem}>
-                                                <input type="checkbox" id={spec.id} onChange={this.handleCheckChange} value={spec.id} />
+                                            <div key={index} className='researchItem'>
+                                                <input type="checkbox" id={spec.id} onChange={this.handleCheckboxChange} value={spec.id} />
                                                 <label htmlFor={spec.id}>{spec.name}</label>
                                             </div>
                                         ))

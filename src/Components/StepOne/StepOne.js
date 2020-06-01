@@ -1,5 +1,5 @@
 import React from "react";
-import classes from '../../ResearchList/ResearchList.module.css'
+import '../../ResearchList/ResearchList.css'
 
 class StepOne extends React.Component{
     state = {
@@ -23,10 +23,10 @@ class StepOne extends React.Component{
         return (
             <React.Fragment>
                 <h1>Что вы желаете протестировать?</h1>
-                <div className={classes.researchItems}>
+                <div className='researchItems'>
                     {results.map((data, index) => {
                         return (
-                            <div key={index} className={classes.researchItem}>
+                            <div key={index} className='researchItem'>
                                 <input type="checkbox" id={data.id} onChange={this.handleCheckboxChange} value={data.id} />
                                 <label htmlFor={data.id}>{data.name}</label>
                             </div>

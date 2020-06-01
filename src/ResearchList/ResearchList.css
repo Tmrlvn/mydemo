@@ -1,0 +1,91 @@
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex-column{
+    flex-direction: column;
+}
+.ResearchList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding-top: 100px;
+}
+.ResearchList .researchItems{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 24px;
+    border-radius: 4px;
+    background: #eee;
+    margin: 15px 0;
+}
+.researchItems .researchItem{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    max-height: 27px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.researchItems .researchItem input{
+    width: 25px;
+    height: 25px;
+    margin: 0 10px 0 0;
+}
+.researchItems .researchItem label{
+    cursor: pointer;
+}
+.ResearchList h1{
+    text-align: center;
+}
+.ResearchList .name{
+    font-size: 24px;
+    margin-bottom: .5rem;
+}
+.ResearchList .spec{
+    font-size: 14px;
+    background-color: #e2e0e0;
+    width: max-content;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+    padding: 1px 4px;
+}
+.ResearchList .button{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+.ResearchList .button .btn{
+    outline: none;
+    border: 0;
+    height: auto;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 300ms;
+    padding: 10px 20px;
+}
+.ResearchList .button .btn:hover{
+    box-shadow: 0 0 8px 4px rgba(32,33,36,0.28);
+    border-color: rgba(223,225,229,0);
+}
+
+
+.ResearchList .button .btn-back{
+    background-color: transparent;
+    color: #0043fe;
+
+}
+.ResearchList .button .btn-forward{
+    background-color: #26ae88;
+    color: #fff;
+}

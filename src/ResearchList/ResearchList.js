@@ -35,21 +35,18 @@ class ResearchList extends React.Component{
         this.setState({
             stepOneValues: values
         })
-        console.log('value1', this.state.stepOneValues)
     }
 
     handleStepTwoChange = values => {
         this.setState({
             stepTwoValues: values
         })
-        console.log('value2', values)
     }
 
     handleStepThreeChange = values => {
         this.setState({
             stepThreeValues: values
         })
-        console.log('value3', values)
     }
 
 
@@ -61,19 +58,19 @@ class ResearchList extends React.Component{
             }
             return null
         })
-        console.log('stepTwoDataaaaaaaaaaaa', stepTwoData)
 
         let stepThreeData = [];
         stepTwoData && stepTwoData.map( data => {
             return data ? data.specifications.map(spec => {
                 if(spec && stepTwoValues[spec.id]){
-                    stepThreeData.push({...spec, stepOneName: data.name});
+                    stepThreeData.length > 0 ? stepThreeData.map((s3) => {
+                        s3[data.name] ? s3[data.name].push(spec) : s3[data.name] = [spec];
+                    }) : stepThreeData.push({[data.name]: [spec]})
                 }
                 return null
             }) : null
             
         })
-        console.log('stepThreeDataaaaaaaaaaaa', stepThreeData)
 
         let stepFourData = [];
         stepTwoData && stepTwoData.map( data => {
@@ -90,8 +87,6 @@ class ResearchList extends React.Component{
             }) : null
 
         })
-        console.log('stepFourDataaaaaaaaaaaa', stepFourData)
-
         /*stepThreeData && stepThreeData.map( data => {
             return data ? data.characteristics.map(spec => {
                 if(spec && stepThreeValues[spec.id]){
@@ -117,7 +112,7 @@ class ResearchList extends React.Component{
                         />}
                     {activeStep === 3 && stepTwoData.length > 0 &&
                         <StepThree
-                            stepThreeData={stepThreeData}
+                            stepThreeData={stepThreeData.length > 0 ? stepThreeData[0] : []}
                             onChangeHandler={this.handleStepThreeChange}
                         />}
                     {activeStep === 4 && stepTwoData.length > 0 &&

@@ -13,7 +13,6 @@ class ResearchList extends React.Component{
         stepOneValues: {},
         stepTwoValues: {},
         stepThreeValues: {},
-        values: {}
     }
 
     handleBackSubmit = () => {
@@ -76,27 +75,21 @@ class ResearchList extends React.Component{
         stepTwoData && stepTwoData.map( data => {
             return data ? data.specifications.map(spec => {
                 if(spec && stepThreeValues[spec.id]){
-                    stepFourData.push({...spec, stepOneName: data.name});
+                    stepFourData.length > 0 ? stepFourData.map((s3) => {
+                        s3[data.name] ? s3[data.name].push(spec) : s3[data.name] = [spec];
+                    }) : stepFourData.push({[data.name]: [spec]})
                 }
                 return spec ? spec.characteristics.map(char => {
                     if (char && stepThreeValues[char.id]){
-                        stepFourData.push({...spec, stepOneName: data.name, chars: char})
+                        stepFourData.length > 0 ? stepFourData.map((s4) => {
+                            s4[spec.name] ? s4[spec.name].push(char) : s4[spec.name] = [char];
+                        }) : stepFourData.push({[spec.name]: [char]})
                     }
-                    return null
                 }) : null
             }) : null
 
         })
-        /*stepThreeData && stepThreeData.map( data => {
-            return data ? data.characteristics.map(spec => {
-                if(spec && stepThreeValues[spec.id]){
-                    stepFourData.push({...spec, stepTwoName: data.name});
-                    console.log('zawel2', stepFourData)
-                }
-                return null
-            }) : null
-
-        })*/
+        console.log('stepFour', stepFourData)
 
         return (
             <div className='ResearchList'>
@@ -117,12 +110,14 @@ class ResearchList extends React.Component{
                         />}
                     {activeStep === 4 && stepTwoData.length > 0 &&
                         <StepFour
-                            stepFourData={stepFourData}
+                            stepFourData={stepFourData.length > 0 ? stepFourData[0] : []}
                         />}
 
                     <div className='button'>
                         {activeStep > 1 ? <button className='btn btn-back' onClick={this.handleBackSubmit}>Назад</button> : null}
-                        {activeStep < 4 ? <button className='btn btn-forward' onClick={this.handleSubmit}>Дальше ></button> : null}
+                        {activeStep < 4 ? <button className='btn btn-forward'
+                                                  onClick={this.handleSubmit}
+                                                  >Дальше ></button> : null}
                     </div>
             </div>
         )

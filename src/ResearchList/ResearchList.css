@@ -78,6 +78,15 @@
     box-shadow: 0 0 8px 4px rgba(32,33,36,0.28);
     border-color: rgba(223,225,229,0);
 }
+.ResearchList .button .btn:disabled{
+    background-color: #c7c7c7;
+    color: #000;
+    cursor: not-allowed;
+}
+.ResearchList .button .btn:disabled:hover{
+    box-shadow: none;
+    border-color: transparent;
+}
 
 
 .ResearchList .button .btn-back{

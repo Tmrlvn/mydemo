@@ -12,13 +12,12 @@ class ResearchList extends React.Component{
         results: ResearchData,
         stepOneValues: {},
         stepTwoValues: {},
-        stepThreeValues: {},
+        stepThreeValues: {}
     }
 
     handleBackSubmit = () => {
         this.setState({
             activeStep: this.state.activeStep - 1,
-            values: {}
         })
     }
     handleSubmit = () => {
@@ -50,7 +49,7 @@ class ResearchList extends React.Component{
 
 
     render() {
-        const { stepOneValues, stepTwoValues, stepThreeValues, activeStep, results } = this.state;
+        const { stepOneValues, stepTwoValues, stepThreeValues, activeStep, results, isDisabled } = this.state;
         const stepTwoData = results.map( data => {
             if(stepOneValues[data.id]){
                 return data;
@@ -117,6 +116,9 @@ class ResearchList extends React.Component{
                         {activeStep > 1 ? <button className='btn btn-back' onClick={this.handleBackSubmit}>Назад</button> : null}
                         {activeStep < 4 ? <button className='btn btn-forward'
                                                   onClick={this.handleSubmit}
+                                                  disabled={
+                                                      Object.keys(stepOneValues).length === 0
+                                                  }
                                                   >Дальше ></button> : null}
                     </div>
             </div>

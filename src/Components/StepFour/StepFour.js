@@ -6,9 +6,9 @@ class StepFour extends React.Component{
         const { stepFourData } = this.props;
 
         const sum = Object.keys(stepFourData).map((key) => key && (
-            stepFourData[key].map((spec) => spec && (spec)).reduce(
+            stepFourData[key].map((spec) => spec && spec).reduce(
                 (a, b) => a + b.price,
-                 null
+                 0
             )
         ));
         console.log('sum', sum)
@@ -26,7 +26,7 @@ class StepFour extends React.Component{
                                         <div className='spec'>{spec.price}</div>
                                     </Fragment>
                                 ))}
-                                {<div>Стоимость экпертизы: {sum}тг</div>}
+                                {<div>Стоимость экпертизы: {sum[index]} тг</div>}
                             </div>
                         )
                     )}
